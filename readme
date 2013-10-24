@@ -1,0 +1,16 @@
+The generic programming can help to achieve a common library of standard
+containers.
+In this project, I will using C language achieve the single list, double
+linked list which can operation on a variety of data types.
+
+The directory structure like this:
+Greneric-Programming
+     /-- src
+		/-- single_list
+	 /-- test
+	 readme
+
+The src directory contains the implementation code.
+The single_list directory contains the single list implementation code.
+The test containers a simple test code.
+The readme introduces the project.
