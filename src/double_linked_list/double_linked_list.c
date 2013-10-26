@@ -122,3 +122,19 @@ void DbListDelete(DbList *dblist, int pos) {
 		free(curr);
 	}
 }
+
+int DbListGetElem(DbList *dblist, int pos, void *elem_addr) {
+	int *curr = 0, i = 0;
+	assert(dblist != 0 && elem_addr != 0);
+	assert(pos >= 0);
+	curr = (int *)((char *)dblist->elem + NextSize(dblist->elem_size));
+	while (*curr && i < pos) {
+		++i;
+		curr = (int *)((char *)(*curr) + NextSize(dblist->elem_size));
+	}
+	if (*curr) {
+		memcpy(elem_addr, (int *)(*curr), dblist->elem_size);
+		return 1;
+	}
+	return 0;
+}
