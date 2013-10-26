@@ -98,3 +98,27 @@ void DbListInsert(DbList *dblist, int pos, void *elem_addr) {
 		*curr = (int)target;
 	}
 }
+
+void DbListDelete(DbList *dblist, int pos) {
+	int *del = 0, *pre = 0, *curr = 0, *next = 0, index = 0;
+	assert(dblist != 0 && pos >= 0);
+	pre = dblist->elem;
+	del = (int *)((char *)dblist->elem + NextSize(dblist->elem_size));
+	while (*del && index < pos) {
+		index++;
+		pre = (int *)(*del);
+		del = (int *)((char *)(*del) + NextSize(dblist->elem_size));
+	}
+	if (*del) {
+		curr = pre;
+		// move the pointer to the next node prior pointer
+		pre = (int *)((char *)(*del) + PreSize(dblist->elem_size));
+		*pre = *((char *)curr + PreSize(dblist->elem_size));
+		// Get the current node's prior pointer
+		next = (int *)((char *)curr + PreSize(dblist->elem_size));
+		// Get the prior node's next pointer
+		next = (int *)((char *)(*next) + NextSize(dblist->elem_size));
+		*next = *del;
+		free(curr);
+	}
+}

@@ -50,4 +50,11 @@ int DbListEmpty(DbList *dblist);
  * */
 void DbListInsert(DbList *dblist, int pos, void *elem_addr);
 
+/* 
+ * @brief Delete the specified position element
+ * @param dblist [in] The head of th double linked list
+ * @param pos [in] The position will be deleted
+ * */
+void DbListDelete(DbList *dblist, int pos);
+
 #endif

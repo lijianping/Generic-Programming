@@ -15,6 +15,11 @@ int main() {
 		printf("The double linked list length is %d\n", i);
 	}
 	DbListInsert(&dblist, 0, &arr[0]);
+	i = DbListLength(&dblist);
+	printf("The double linked list length is %d\n", i);
+	DbListDelete(&dblist, 1);
+	i = DbListLength(&dblist);
+	printf("The double linked list length is %d\n", i);
 	DbListFree(&dblist);
 	return 0;
 }
