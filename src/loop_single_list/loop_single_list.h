@@ -16,4 +16,8 @@ int LSgListLength(LSgList *lsglist);
 
 int LSgListEmpty(LSgList *lsglist);
 
+void LSgListInsert(LSgList *lsglist, int pos, void *elem_addr);
+
+void LSgListDelete(LSgList *lsglist, int pos);
+
 #endif

@@ -15,5 +15,9 @@ int main() {
 	} else {
 		printf("The length of the loop single list is %d\n", LSgListLength(&lsgList));
 	}
+	LSgListInsert(&lsgList, 6, &arr[2]);
+	printf("The length of the loop single list is %d\n", LSgListLength(&lsgList));
+	LSgListDelete(&lsgList, 4);
+	printf("The length of the loop single list is %d\n", LSgListLength(&lsgList));
 	LSgListFree(&lsgList);
 }

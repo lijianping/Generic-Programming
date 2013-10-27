@@ -72,3 +72,36 @@ int LSgListEmpty(LSgList *lsglist) {
 	if (*tmp != (int)lsglist->elem) return 0;
 	return 1;
 }
+
+void LSgListInsert(LSgList *lsglist, int pos, void *elem_addr) {
+	int *insert = 0, *curr = 0, *target = 0, i = 0;
+	assert(lsglist != 0 && elem_addr != 0);
+	target = (int *)malloc(NodeSize(lsglist->elem_size));
+	assert(target != 0);
+	memset(target, 0, NodeSize(lsglist->elem_size));
+	memcpy(target, elem_addr, lsglist->elem_size);
+	insert = (int *)((char *)lsglist->elem + lsglist->elem_size);
+	while (*insert != (int)lsglist->elem && i < pos) {
+		++i;
+		insert = (int *)((char *)*insert + lsglist->elem_size);
+	}
+	curr = (int *)((char *)target + lsglist->elem_size);
+	*curr = *insert;
+	*insert = (int)target;
+}
+
+void LSgListDelete(LSgList *lsglist, int pos) {
+	int *del = 0, *next = 0, *tmp = 0, i = 0;
+	assert(lsglist != 0 && pos >= 0);
+	del = (int *)((char *)lsglist->elem + lsglist->elem_size);
+	while (*del != (int)lsglist->elem && i < pos) {
+		++i;
+		del = (int *)((char *)*del + lsglist->elem_size);
+	}
+	if (*del != (int)lsglist->elem) {
+		next = (int *)((char *)*del + lsglist->elem_size);
+		tmp = del;
+		*tmp = *next;
+		free((int *)*del);
+	}
+}

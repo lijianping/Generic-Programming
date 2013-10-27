@@ -5,12 +5,22 @@ linked list which can operation on a variety of data types.
 
 The directory structure like this:
 Greneric-Programming
-     /-- src
-		/-- single_list
-	 /-- test
-	 readme
+    /-- src
+        /-- single_list
+        /-- loop_single_list
+        /-- double_linked_list
+        ...
+    /-- test
+        /-- Makefile
+        /-- sglist.c
+        /-- dblist.c
+        /-- loopSingleList.c
+        ...
+    readme
 
 The src directory contains the implementation code.
 The single_list directory contains the single list implementation code.
+The loop_single_list directory contains the loop single list implementation code.
+The double_linked_list directory contains the double linked list implementation code.
 The test containers a simple test code.
-The readme introduces the project.
+The readme is the introducation of the project.
