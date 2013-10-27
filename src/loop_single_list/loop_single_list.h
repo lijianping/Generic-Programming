@@ -20,4 +20,6 @@ void LSgListInsert(LSgList *lsglist, int pos, void *elem_addr);
 
 void LSgListDelete(LSgList *lsglist, int pos);
 
+int LSgListGetElem(LSgList *lsglist, int pos, void *elem_addr);
+
 #endif

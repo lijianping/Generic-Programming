@@ -1,6 +1,8 @@
 #include "../src/loop_single_list/loop_single_list.h"
 #include <stdio.h>
 
+void Display(LSgList *lsglist);
+
 int main() {
 	LSgList lsgList;
 	int i, arr[] = {
@@ -10,14 +12,27 @@ int main() {
  	for (i = 0; i < sizeof(arr) / sizeof(int); ++i) {
 		LSgListAdd(&lsgList, &arr[i]);
 	}
+	Display(&lsgList);
 	if (LSgListEmpty(&lsgList)) {
 		printf("The loop single list is empty\n");
 	} else {
 		printf("The length of the loop single list is %d\n", LSgListLength(&lsgList));
 	}
 	LSgListInsert(&lsgList, 6, &arr[2]);
-	printf("The length of the loop single list is %d\n", LSgListLength(&lsgList));
+	Display(&lsgList);
 	LSgListDelete(&lsgList, 4);
-	printf("The length of the loop single list is %d\n", LSgListLength(&lsgList));
+    Display(&lsgList);
 	LSgListFree(&lsgList);
+}
+
+void Display(LSgList *lsglist) {
+	int i, data, len = 0;
+	if (lsglist) {
+		len = LSgListLength(lsglist);
+		for (i = 0; i < len; ++i) {
+			LSgListGetElem(lsglist, i, &data);
+			printf("%d ", data);
+		}
+		printf("\n");
+	}
 }

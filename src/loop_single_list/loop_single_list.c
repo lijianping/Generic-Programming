@@ -100,8 +100,24 @@ void LSgListDelete(LSgList *lsglist, int pos) {
 	}
 	if (*del != (int)lsglist->elem) {
 		next = (int *)((char *)*del + lsglist->elem_size);
-		tmp = del;
-		*tmp = *next;
-		free((int *)*del);
+		tmp = (int *)*del;
+		*del = *next;
+		free(tmp);
 	}
+}
+
+int LSgListGetElem(LSgList *lsglist, int pos, void *elem_addr) {
+	int *curr = 0, i = 0;
+	assert(lsglist != 0 && elem_addr != 0);
+	assert(pos >= 0);
+	curr = (int *)((char *)lsglist->elem + lsglist->elem_size);
+	while (*curr != (int)lsglist->elem && i < pos) {
+		++i;
+		curr = (int *)((char *)*curr + lsglist->elem_size);
+	}
+	if (*curr != (int)lsglist->elem) {
+		memcpy(elem_addr, (int *)*curr, lsglist->elem_size);
+		return 1;
+	}
+	return 0;
 }
