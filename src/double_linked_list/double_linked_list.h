@@ -68,4 +68,14 @@ void DbListDelete(DbList *dblist, int pos);
  * */
 int DbListGetElem(DbList *dblist, int pos, void *elem_addr);
 
+/* 
+ * @brief Find the specified element
+ * @param dblist [in] The head of the double linked list
+ * @param elem_addr [in] The address of the specified element which
+ *        will be found
+ * @return If find it, return the position of the element at the double
+ *         linked list. Otherwise, return -1
+ * */
+int DbListFindElem(DbList *dblist, void *elem_addr);
+
 #endif

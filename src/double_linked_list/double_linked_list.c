@@ -138,3 +138,17 @@ int DbListGetElem(DbList *dblist, int pos, void *elem_addr) {
 	}
 	return 0;
 }
+
+int DbListFindElem(DbList *dblist, void *elem_addr) {
+	int *curr = 0, i = 0;
+	assert(dblist != 0 && elem_addr != 0);
+	curr = (int *)((char *)dblist->elem + NextSize(dblist->elem_size));
+	while (*curr) {
+		i++;
+		if (0 == memcmp(elem_addr, (int *)*curr, dblist->elem_size)) {
+			return i;
+		}
+		curr = (int *)((char *)(*curr) + NextSize(dblist->elem_size));
+	}
+	return -1;
+}

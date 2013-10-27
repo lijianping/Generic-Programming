@@ -26,6 +26,11 @@ int main() {
 	Display(&dblist);
 	i = DbListLength(&dblist);
 	printf("The double linked list length is %d\n", i);
+	if (-1 != DbListFindElem(&dblist, &i)) {
+		printf("I find you\n");
+	} else {
+		printf("I can not find you\n");
+	}
 	DbListFree(&dblist);
 	return 0;
 }
