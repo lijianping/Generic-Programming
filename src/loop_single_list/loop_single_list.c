@@ -26,11 +26,9 @@ void LSgListFree(LSgList *lsglist) {
 		tmp = (int *)((char *)*tmp + lsglist->elem_size);
 		// free the current node
 		free((int *)*curr);
-		printf("-");
 	}
 	// free the head node 
 	free(lsglist->elem);
-	printf("-\n");
 }
 
 void LSgListAdd(LSgList *lsglist, void *elem_addr) {
@@ -120,4 +118,18 @@ int LSgListGetElem(LSgList *lsglist, int pos, void *elem_addr) {
 		return 1;
 	}
 	return 0;
+}
+
+int LSgListFindElem(LSgList *lsglist, void *elem_addr) {
+	int *curr = 0, i = 0;
+	assert(lsglist != 0 && elem_addr != 0);
+	curr = (int *)((char *)lsglist->elem + lsglist->elem_size);
+	while (*curr != (int)lsglist->elem) {
+		if (0 == memcmp(elem_addr, (int *)*curr, lsglist->elem_size)) {
+			return i;
+		}
+		++i;
+		curr = (int *)((char *)*curr + lsglist->elem_size);
+	}
+	return -1;
 }

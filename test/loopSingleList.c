@@ -5,6 +5,7 @@ void Display(LSgList *lsglist);
 
 int main() {
 	LSgList lsgList;
+	int a = 6;
 	int i, arr[] = {
 		1, 2, 3, 4, 5, 6
 	};
@@ -22,6 +23,12 @@ int main() {
 	Display(&lsgList);
 	LSgListDelete(&lsgList, 4);
     Display(&lsgList);
+	i = LSgListFindElem(&lsgList, &a);
+	if (i != -1) {
+		printf("Find %d at position %d\n", a, i);
+	} else {
+		printf("Can not find\n");
+	}
 	LSgListFree(&lsgList);
 }
 

@@ -22,4 +22,6 @@ void LSgListDelete(LSgList *lsglist, int pos);
 
 int LSgListGetElem(LSgList *lsglist, int pos, void *elem_addr);
 
+int LSgListFindElem(LSgList *lsglist, void *elem_addr);
+
 #endif
