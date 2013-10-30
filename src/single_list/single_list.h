@@ -79,4 +79,18 @@ int SgListGetElem(SgList *sglist, int pos, void *elem_addr);
  * */
 int SgListFindElem(SgList *sglist, void *elem_addr);
 
+/* 
+ * @brief Sort the single list
+ * @param sglist [in] The head of the single list
+ * @param cmpfn [in] Pointer to a function that compares two elements
+ *        This function is called repeatedly by SgListSort to compare two elements.
+ *        It shall follow the following prototype:
+ *             int cmpfn(void * p1, void *p2);
+ *        return value                               meaning
+ *            < 0        The element pointed by p1 goes before the element pointed by p2
+ *            = 0        The element pointed by p1 is equivalent to the element pointed by p2
+ *            > 0        The element pointed by p1 goes after the element pointed by p2
+ * */
+void SgListSort(SgList *sglist, int (*cmpfn)(void *, void *));
+
 #endif

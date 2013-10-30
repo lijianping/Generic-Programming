@@ -3,13 +3,14 @@
 
 typedef char ElemType;
 void Display(SgList *sglist);
+int CharCmp(void *a, void *b);
 
 int main() {
 	ElemType num;
 	SgList sglist;
 	int i = 0;
 	char test[] = {
-		'a', 'b', 'c', 'd', 'e'
+		'a', 'b', 'h', 'k', 'e'
 	};
 
 	SgListNew(&sglist, sizeof(int));
@@ -32,6 +33,8 @@ int main() {
 		   SgListLength(&sglist));
 	i = SgListFindElem(&sglist, &test[2]);
 	printf("%d\n", i);
+	SgListSort(&sglist, CharCmp);
+	Display(&sglist);
 	SgListFree(&sglist);
 	return 0;
 }
@@ -42,7 +45,11 @@ void Display(SgList *sglist) {
 	len = SgListLength(sglist);
 	for (i = 0; i < len; ++i) {
 		SgListGetElem(sglist, i, &tmp);
-		printf("%d ", tmp);
+		printf("%c ", tmp);
 	}
 	printf("\n");
+}
+
+int CharCmp(void *a, void *b) {
+	return *(char *)a - *(char *)b;
 }

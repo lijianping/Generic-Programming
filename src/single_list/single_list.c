@@ -132,3 +132,36 @@ int SgListFindElem(SgList *sglist, void *elem_addr) {
 	}
 	return -1;
 }
+
+void SgListSort(SgList *sglist, int (*cmpfn)(void *, void *)) {
+	int *key = 0, *curr = 0, *tmp = 0, *next = 0;
+	assert(sglist != 0);
+	curr = (int *)((char *)sglist->elem + sglist->elem_size);
+	key = (int *)((char *)*curr + sglist->elem_size);
+	tmp = key;
+	key = (int *)*key;
+	*tmp = 0;
+	while (key) {
+		// store the next sort node
+		next = (int *)*((int *)((char *)key + sglist->elem_size));
+		// move the curr pointer to the heade 
+		curr = (int *)((char *)sglist->elem + sglist->elem_size);
+		while (*curr) {
+			if (cmpfn(key, (void *)*curr) > 0) {
+				curr = (int *)((char *)*curr + sglist->elem_size);
+			} else {
+				tmp = (int *)((char *)key + sglist->elem_size);
+				*tmp = *curr;
+				*curr = (int)key;
+				break;
+			}
+		}
+		if (*curr == 0) {
+			*((char *)key + sglist->elem_size) = *curr;
+			tmp = (int *)((char *)key + sglist->elem_size);
+			*tmp = *curr;
+			*curr = (int)key;
+		}
+		key = next;
+	}
+}
