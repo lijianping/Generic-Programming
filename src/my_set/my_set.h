@@ -1,5 +1,5 @@
-#ifndef __SINGLE_LIST_H_
-#define __SINGLE_LIST_H_
+#ifndef __MY_SET_H_
+#define __MY_SET_H_
 
 typedef struct SgList {
 	int elem_size;

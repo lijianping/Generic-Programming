@@ -1,4 +1,4 @@
-all: sglist.exe dblist.exe lsglist.exe myset.exe
+all: sglist.exe dblist.exe lsglist.exe myset.exe stackTest.exe
 .PHONY: all
 
 sglist.exe: ../src/single_list/single_list.h
@@ -9,5 +9,7 @@ lsglist.exe: ../src/loop_single_list/loop_single_list.h
 	gcc -g -o lsglist.exe loopSingleList.c ../src/loop_single_list/loop_single_list.c
 myset.exe: ../src/my_set/my_set.h
 	gcc -g -o myset.exe myset.c ../src/my_set/my_set.c
+stackTest.exe: ../src/stack/my_stack.h
+	gcc -g -o stackTest.exe stackTest.c ../src/stack/my_stack.c
 clean:
 	rm -rf *.o *.exe
