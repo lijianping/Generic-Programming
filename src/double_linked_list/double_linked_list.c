@@ -8,6 +8,28 @@
 #define PreSize(size) ((size))
 #define NextSize(size) ((size) + sizeof(int *))
 
+/*
+ * The double linked list node looks like:
+ * ---------------------
+ * | data | pre | next |
+ * ---------------------
+ * A double linked list looks like:
+ *  
+ *  -----------------------              
+ *  | element size | head |  ------------------------------------
+ *  -------------------|---  | ---------------------            |
+ *                     ------->| data | pre | next | header     |
+ *                             ----------------|----            | 
+ *                                             |      ----------|----------
+ *                                             ------>| data | pre | next | first 
+ *                                                 |  ----------------|----
+ *                                                 |                  |
+ *                                       ----------|----------        |
+ *                                    -->| data | pre | null | second |
+ *                                    |  ---------------------        |
+ *                                    ---------------------------------
+ */
+
 void DbListNew(DbList *dblist, int elem_size) {
 	int *tmp = 0;
 	assert(dblist != 0);
